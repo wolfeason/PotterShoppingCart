@@ -40,5 +40,21 @@ namespace PotterShoppingCart.Tests
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
+        
+        [TestMethod()]
+        public void ShoppingCartTest_Volume_1_Volume_2_Volume_3_Should_270()
+        {
+            //一二三集各買了一本，價格應為100*3*0.9=270
+            var expected = 270;
+            var shoppingcart = new ShoppingCart();
+            _Items.Add(new CarItem { Volume = 1, Name = "第一冊", SellPrice = 100, Quantity = 1 });
+            _Items.Add(new CarItem { Volume = 2, Name = "第二冊", SellPrice = 100, Quantity = 1 });
+            _Items.Add(new CarItem { Volume = 3, Name = "第三冊", SellPrice = 100, Quantity = 1 });
+            //Act
+            var actual = shoppingcart.CalculateShoppingCart(_Items);
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

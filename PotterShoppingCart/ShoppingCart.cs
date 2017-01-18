@@ -10,7 +10,13 @@ namespace PotterShoppingCart
     {
         public int CalculateShoppingCart(IEnumerable<CarItem> _Items)
         {
-            int results1 = _Items.Sum(x => x.SellPrice * x.Quantity);
+            double discount = 0.95;
+            double calculate = _Items.Sum(x => x.SellPrice * x.Quantity);
+
+            int number = _Items.Sum(x => x.Quantity);
+            if (number == 2) calculate = calculate * discount;
+
+            int results1 = (int)calculate;
             return results1;
         }
     }

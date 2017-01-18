@@ -10,14 +10,23 @@ namespace PotterShoppingCart
     {
         public int CalculateShoppingCart(IEnumerable<CarItem> _Items)
         {
-            double discount = 0.95;
+            Dictionary<int, double> discount = Discount();
             double calculate = _Items.Sum(x => x.SellPrice * x.Quantity);
 
             int number = _Items.Sum(x => x.Quantity);
-            if (number == 2) calculate = calculate * discount;
+            calculate = calculate * discount[number];
 
             int results1 = (int)calculate;
             return results1;
+        }
+
+        private Dictionary<int, double> Discount()
+        {
+            Dictionary<int, double> discount = new Dictionary<int, double>();
+            discount.Add(1, 1);
+            discount.Add(2, 0.95);
+            discount.Add(3, 0.9);
+            return discount;
         }
     }
 
@@ -28,4 +37,5 @@ namespace PotterShoppingCart
         public int SellPrice { get; set; }
         public int Quantity { get; set; }
     }
+
 }

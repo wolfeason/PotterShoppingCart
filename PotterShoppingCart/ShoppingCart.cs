@@ -11,10 +11,18 @@ namespace PotterShoppingCart
         public int CalculateShoppingCart(IEnumerable<CarItem> _Items)
         {
             Dictionary<int, double> discount = Discount();
-            double calculate = _Items.Sum(x => x.SellPrice * x.Quantity);
 
-            int number = _Items.Sum(x => x.Quantity);
-            calculate = calculate * discount[number];
+            double calculate = 0;
+            var container = _Items;
+
+            while (container.Max(m => m.Quantity) > 0)
+            {
+                var temp = container.Distinct().ToList();
+                int number = temp.Where(n => n.Quantity > 0).Select(n => n.Volume).Count();
+                calculate += temp.Where(c => c.Quantity > 0).Sum(c => c.SellPrice) * discount[number];
+
+                foreach (var v in container)  v.Quantity--;
+            }
 
             int results1 = (int)calculate;
             return results1;

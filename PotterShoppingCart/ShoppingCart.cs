@@ -26,6 +26,7 @@ namespace PotterShoppingCart
             discount.Add(1, 1);
             discount.Add(2, 0.95);
             discount.Add(3, 0.9);
+            discount.Add(4, 0.8);
             return discount;
         }
     }

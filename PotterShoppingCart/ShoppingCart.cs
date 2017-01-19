@@ -17,11 +17,12 @@ namespace PotterShoppingCart
 
             while (container.Max(m => m.Quantity) > 0)
             {
-                var temp = container.Distinct().ToList();
+                var temp = container.Where(t => t.Quantity > 0).Distinct().ToList();
                 int number = temp.Where(n => n.Quantity > 0).Select(n => n.Volume).Count();
-                calculate += temp.Where(c => c.Quantity > 0).Sum(c => c.SellPrice) * discount[number];
+                int sets = temp.Where(s => s.Quantity > 0).Distinct().Min(s => s.Quantity);
+                calculate += temp.Where(c => c.Quantity > 0).Sum(c => c.SellPrice * sets) * discount[number];
 
-                foreach (var v in container)  v.Quantity--;
+                foreach (var v in container)  v.Quantity-= sets;
             }
 
             int results1 = (int)calculate;

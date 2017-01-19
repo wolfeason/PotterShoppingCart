@@ -142,7 +142,7 @@ namespace PotterShoppingCart.Tests
 
         [TestMethod()]
         public void ShoppingCartTest_Volume_1_Buy_2_Volume_2_Buy_4_Volume_3_Buy_6_Should_1120()
-        {
+       { 
             //(綠燈)第一集買了兩本，第二集買了四本，第三集買了六本，價格應為100*3*0.9*2 + 100*2*0.95*2 + 100*1*2 =1120
             var expected = 1120;
             var shoppingcart = new ShoppingCart();

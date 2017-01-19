@@ -124,5 +124,19 @@ namespace PotterShoppingCart.Tests
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
+
+        [TestMethod()]
+        public void ShoppingCartTest_Volume_1_Buy_99_Should_460()
+        {
+            //第一集買了九十九本，其他都沒買，價格應為100*99 =9900
+            var expected = 9900;
+            var shoppingcart = new ShoppingCart();
+            _Items.Add(new CarItem { Volume = 1, Name = "第一冊", SellPrice = 100, Quantity = 99 });
+            //Act
+            var actual = shoppingcart.CalculateShoppingCart(_Items);
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
